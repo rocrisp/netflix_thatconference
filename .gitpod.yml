@@ -1,4 +1,4 @@
-image: synedra/datastax:tiktok
+image: synedra/datastax:gitpod
 tasks:
   - name: workshop-graphql-netflix
     init: |
