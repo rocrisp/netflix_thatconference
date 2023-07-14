@@ -899,24 +899,7 @@ Now that you know how the front-end works, launch the app!
 
 </details>
 
-## 3. Install the Netlify CLI
-
-In the `workshop-graphql-netflix` directory, run the following:
-
-```
-npm install -g netlify-cli
-```
-
-<details><summary>Show me!</summary>
-
-![Install Netlify CLI](images/netlify-install-cli.png)
-
-</details>
-
-With the Netlify command-line interface you will build and deploy
-the application directly from the Gitpod terminal.
-
-## 4. Provide DB connection parameters
+## 3. Provide DB connection parameters
 
 The "serverless functions" part of your app, in order to speak to
 your DB through GraphQL, needs two important pieces of information:
@@ -929,30 +912,9 @@ The quickest way is to have `astra-cli` generate one for you:
 astra db create-dotenv -k netflix workshops
 ```
 
-<details><summary>I want to do it manually</summary>
+## 4. Run the app in dev mode
 
-If for some reason you don't use `astra-cli`, follow these steps:
-
-- copy `cp .env.sample .env` and open it: `gp open .env`;
-- `.env` is now open in the IDE editor and has two placeholders to replace:
-- insert the `AstraCS:...` database token (keep the quotes);
-- insert the GraphQL API address (it will look something like `https://b2f[...]/graphql/netflix`).
-
-You can generate a new database token if you want. The GraphQL address
-can be found in the playground: it is the URL you have edited to end in `netflix`
-in the second playground tab ([Part 1, step 4a](#4-insert-genre-data-with-graphql)).
-
-</details>
-
-## 5. Run the app in dev mode
-
-✅ **Step 5a: Install dependencies:**
-
-```bash
-npm install
-```
-
-✅ **Step 5b: Start the app:** With the command
+✅ **Start the app:** With the command
 
 ```
 netlify dev
@@ -973,11 +935,11 @@ You can copy the URL found in Gitpod's simple browser and open in a new tab
 (of your real browser, that is) for a
 better experience. But now it's time to move to the actual deploy phase.
 
-## 6. Connect to your Netlify site
+## 5. Connect to your Netlify site
 
-✅ **Step 6a:** Stop the dev run with `Ctrl-C`.
+✅ **Step 5a:** Stop the dev run with `Ctrl-C`.
 
-✅ **Step 6b:** Authenticate with Netlify: run
+✅ **Step 5b:** Authenticate with Netlify: run
 
 ```
 netlify login
@@ -999,7 +961,7 @@ Once you complete the login, you will see a console output like this:
 
 ![Netlify login](images/netlify-login-2.png)
 
-✅ **Step 6c:** Associate to your Netlify site: run
+✅ **Step 5c:** Associate to your Netlify site: run
 
 ```
 netlify link
@@ -1014,9 +976,9 @@ and make sure you confirm the choice of associating to
 
 </details>
 
-## 7. Deploy in production!
+## 6. Deploy in production!
 
-✅ **Step 7a:** Inject secrets to the Netlify site
+✅ **Step 6a:** Inject secrets to the Netlify site
 
 ```
 netlify env:import .env
@@ -1034,7 +996,7 @@ _Note: If you generated the `.env` with
 
 </details>
 
-✅ **Step 7b:** Build the app
+✅ **Step 6b:** Build the app
 
 Run
 
@@ -1048,7 +1010,7 @@ netlify build
 
 </details>
 
-✅ **Step 7c:** Deploy!
+✅ **Step 6c:** Deploy!
 
 ```
 netlify deploy --prod
@@ -1060,7 +1022,7 @@ netlify deploy --prod
 
 </details>
 
-✅ **Step 7d:** Visit your site.
+✅ **Step 6d:** Visit your site.
 
 ```
 netlify open:site
