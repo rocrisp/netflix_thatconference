@@ -8,12 +8,10 @@ tasks:
       pip3 install httpie-astra==0.1.3
   - name: netflix_thatconference
     init: |
-      cd /workspace/netflix_thatconference
       gp open README.md
       nvm install node
       npm install -g npm@latest
     command: |
-      cd /workspace/netflix_thatconference
       git remote -v | grep datastaxdevs && echo "DO NOT USE THE DATASTAXDEVS WORKSPACE, PLEASE GO BACK TO THE INSTRUCTIONS TO SET UP YOUR OWN"
       git remote -v | grep -v datastaxdevs && echo "workshopgraphql-netflix gitpod ready - LET'S DO THIS!" && npm install
 ports:
