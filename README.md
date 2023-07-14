@@ -137,7 +137,7 @@ The Netlify deploy button will:
 
 </details>
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/datastaxdevs/netflix_thatconference)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/datastaxdevs/netflix-that-demo)
 
 <details><summary>Show me!</summary>
 
