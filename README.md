@@ -74,34 +74,29 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 ## Table of contents
 
-### Part I - Database creation and workspace setup
+### Part 1 - DB and Workspace Setup
 1. [Sign in to Astra](#1-login-or-register-to-astradb)
 2. [Setup Netlify](#2-deploy-skeletal-gui-to-netlify)
 3. [Launch Gitpod from YOUR Github repo](#3-launch-gitpod-from-your-github-repo)
 4. [Set up and use `astra-cli`](#4-set-up-and-use-astra-cli)
 
-### Part I - DB Setup & Data Ingest
-1. [Create Astra DB Instance](#1-login-or-register-to-astradb-and-create-database)
-2. [Create a security token](#2-create-a-security-token)
-3. [Create table for genres with GraphQL](#3-create-table-for-genres-with-graphql)
-4. [Insert genre data with GraphQL](#4-insert-genre-data-with-graphql)
-5. [Retrieve genres with GraphQL](#5-retrieve-genres-with-graphql)
-6. [Create a table for movies](#6-create-a-table-for-movies)
-7. [Insert a few movies](#7-insert-a-few-movies)
-8. [Retrieve movies: Pagination](#8-retrieve-movies-pagination)
+### Part 2 - DB Setup & Data Ingest
+1. [Create table for genres with GraphQL](#1-create-table-for-genres-with-graphql)
+2. [Insert genre data with GraphQL](#4-insert-genre-data-with-graphql)
+3. [Retrieve genres with GraphQL](#5-retrieve-genres-with-graphql)
+4. [Create a table for movies](#6-create-a-table-for-movies)
+5. [Insert a few movies](#7-insert-a-few-movies)
+6. [Retrieve movies: Pagination](#8-retrieve-movies-pagination)
 
-### Part II - Build and Deploy Front-End
+### Part 3 - Connecting your Application
 
-1. [Deploy skeletal GUI to Netlify](#1-deploy-skeletal-gui-to-netlify)
-2. [Launch Gitpod from YOUR Github repo](#2-launch-gitpod-from-your-github-repo)
-3. [Set up and use `astra-cli`](#3-set-up-and-use-astra-cli)
-4. [Serverless Functions](#4-serverless-functions)
-5. [Fetching from the Front-End](#5-fetching-from-the-front-end)
-6. [Install the Netlify CLI](#6-install-the-netlify-cli)
-7. [Provide DB connection parameters](#7-provide-db-connection-parameters)
-8. [Run the app in dev mode](#8-run-the-app-in-dev-mode)
-9. [Connect to your Netlify site](#9-connect-to-your-netlify-site)
-10. [Deploy in production!](#10-deploy-in-production)
+1. [Serverless Functions](#4-serverless-functions)
+2. [Fetching from the Front-End](#5-fetching-from-the-front-end)
+3. [Install the Netlify CLI](#6-install-the-netlify-cli)
+4. [Provide DB connection parameters](#7-provide-db-connection-parameters)
+5. [Run the app in dev mode](#8-run-the-app-in-dev-mode)
+6. [Connect to your Netlify site](#9-connect-to-your-netlify-site)
+7. [Deploy in production!](#10-deploy-in-production)
 
 [**🎓 Complete the assignment, receive your Badge!**](#homework)
 
@@ -113,7 +108,7 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 - [What is JamStack?](https://github.com/datastaxdevs/workshop-battlestax/blob/master/README_JAM.md)
 - [Video tutorial with Ania Kubow](#video-tutorial-with-ania-kubow)
 
-# Part 1 - DB Setup & Data Ingest
+# Part 1 - DB and Workspace Setup
 
 ## 1. Login or Register to AstraDB
 
@@ -122,9 +117,6 @@ _**`ASTRA DB`** is the simplest way to run Cassandra with zero operations at all
 [Login to Astra](https://astra.datastax.com)
 
 Your initial database can have any name and keyspace, we will create the workshop database shortly.
-
-While the database is being created, you will also get a **Security token**:
-**please IGNORE THIS ONE, as we will be soon creating a new, more powerful token for today**.
 
 ## 2. Deploy skeletal GUI to Netlify
 
@@ -278,10 +270,19 @@ Show me!
 
 </details>
 
+✅ **Step 4b: Create the workshops database:**
 
-## 3. Create table for genres with GraphQL
+``` bash
+astra db create workshops -k netflix --if-not-exists
+```
 
-✅  **Step 3a:** Open **GraphQL Playground**:
+It may take a few minutes for this to complete, once it does you can continue.
+
+# Part 2 - DB Setup and Data Ingest
+
+## 1. Create table for genres with GraphQL
+
+✅  **Step 1a:** Open **GraphQL Playground**:
 
 0. Ensure you are logged on to your [Astra](https://astra.datastax.com) account
 1. Click on the "workshops" database on the left (expanding the list if needed)
@@ -306,7 +307,7 @@ to switch between the (logically distinct) realms of "managing schema" and "mana
 
 ![Playground tabs VS Browser tabs](https://github.com/datastaxdevs/workshop-graphql-netflix/raw/master/images/tabs-vs-playgroundtabs-labeled-2.png)
 
-✅  **Step 3b:** Provide the database token as header
+✅  **Step 1b:** Provide the database token as header
 
 In the GraphQL Playground, **Populate HTTP HEADER** variable `x-cassandra-token` on the bottom of the page with your token (including the `AstraCS:` part).
 _This is the "Database Administrator" token you created earlier on the Astra DB dashboard (Step 2 above)._
@@ -324,7 +325,7 @@ _This is the "Database Administrator" token you created earlier on the Astra DB 
 > Note: the GraphQL Playground starts with a ready-to-use _temporary token_ as the `x-cassandra-token` header. But you want the queries run in the Playground
 > to be identical to those that the Netlify functions will run from code, so **please replace the token with your DB token as instructed**.
 
-✅  **Step 3c:** In GraphQL Playground, create the `reference_list` table:
+✅  **Step 1c:** In GraphQL Playground, create the `reference_list` table:
 
 Copy the following **mutation** to the left panel
 
@@ -363,15 +364,15 @@ Response not successful: Received status code 401 | Same as "server cannot be re
 |"Play" button does nothing| Ensure query is syntactically correct |
 "Validation error of type FieldUndefined" | Most likely query in the wrong playground tab, or writing to table not created yet |
 
-## 4. Insert genre data with GraphQL
+## 2. Insert genre data with GraphQL
 
-✅  **Step 4a:** Get to the API URL for your keyspace
+✅  **Step 2a:** Get to the API URL for your keyspace
 
 In graphQL playground, **change playground tab** to now use `graphql`. The Playground has its own address bar
 (**note**: it's _not_ the address bar of your browser). Edit the ending of the URL shown there, from `system` to the
 name of the keyspace: `netflix`
 
-✅  **Step 4b:** Repeat the insertion of the `x-cassandra-token` header for this playground tab (as you did for the first one):
+✅  **Step 2b:** Repeat the insertion of the `x-cassandra-token` header for this playground tab (as you did for the first one):
 
 <details>
 <summary>Show me!</summary>
@@ -380,7 +381,7 @@ name of the keyspace: `netflix`
 
 </details>
 
-✅  **Step 4c:** In the GraphQL Playground, run the mutation that writes genre data:
+✅  **Step 2c:** In the GraphQL Playground, run the mutation that writes genre data:
 
 Copy the following mutation on the left panel:
 
@@ -457,9 +458,9 @@ mutation insertGenres {
 
 then click on the big "play button" arrow in the center to execute the mutation
 
-## 5. Retrieve genres with GraphQL
+## 3. Retrieve genres with GraphQL
 
-✅  **Step 5a:** In GraphQL Playground, not changing playground tab (stay on the second: "graphql", yeah) run the following query to read the `value` column of all table rows:
+✅  **Step 3a:** In GraphQL Playground, not changing playground tab (stay on the second: "graphql", yeah) run the following query to read the `value` column of all table rows:
 
 ```yaml
 query getAllGenres {
@@ -480,9 +481,9 @@ Show me!
 
 </details>
 
-## 6. Create a table for movies
+## 4. Create a table for movies
 
-✅  **Step 6a:** Switch back to first playground tab ("graphql-schema"; the token header will be already set).
+✅  **Step 4a:** Switch back to first playground tab ("graphql-schema"; the token header will be already set).
 
 <details>
 <summary>
@@ -526,9 +527,9 @@ Show me!
 
 </details>
 
-## 7. Insert a few movies
+## 5. Insert a few movies
 
-✅  **Step 7a:** Go to playground tab "graphql" again. 
+✅  **Step 5a:** Go to playground tab "graphql" again. 
 
 <details>
 <summary>
@@ -596,9 +597,9 @@ Show me!
 </details>
 
 
-## 8. Retrieve movies: Pagination
+## 6. Retrieve movies: Pagination
 
-✅  **Step 8a:** In GraphQL Playground, not changing playground tab (stay on the second tab, "graphql", yeah) list values from the table with the following command:
+✅  **Step 6a:** In GraphQL Playground, not changing playground tab (stay on the second tab, "graphql", yeah) list values from the table with the following command:
 
 ```yaml
 query getMovieAction {
@@ -627,7 +628,7 @@ Show me!
 </details>
 
 
-✅ **Step 8b: Enable pagination:** On a small dataset, you can retrieve all values in the table at once; but in general, for performance or network reasons, you'll need pagination. Run a similar query as before, but this time asking for a _page size of 2_:
+✅ **Step 6b: Enable pagination:** On a small dataset, you can retrieve all values in the table at once; but in general, for performance or network reasons, you'll need pagination. Run a similar query as before, but this time asking for a _page size of 2_:
 
 ```yaml
 query getMovieActionPag1 {
@@ -658,7 +659,7 @@ Show me!
 </details>
 
 
-✅ **Step 8c: Fetch the next page:**
+✅ **Step 6c: Fetch the next page:**
 
 Notice that `pageState` now is also returned. Use it to fetch the next 2 items (next page):
 edit the next query to replace `YOUR_PAGE_STATE` with your own string value:
@@ -695,12 +696,9 @@ Show me!
 If you try to paste the _newly-obtained_ value for `pageState` and re-run the query, you get an empty list and a null `pageState` in return. D'oh! You had scrolled through all rows already:
 _this is how pagination signals the end of the full results list._
 
-# Part 2 - Build and Deploy Front-End
 
-
-
-✅ **Step 3b: Bulk data load:** Load a large movie dataset in the database.
-This command installs and properly launches the `DSBulk` tool ([docs](https://docs.datastax.com/en/dsbulk/docs/dsbulkAbout.html)):
+✅ **Step 6d: Bulk data load:** Load a large movie dataset in the database.
+This command installs and properly launches the `DSBulk` tool ([docs](https://docs.datastax.com/en/dsbulk/docs/dsbulkAbout.html)).  Run this command in your gitpod terminal.
 
 ``` bash
 astra db load workshops \
@@ -718,26 +716,15 @@ Show me!
 
 </details>
 
-<details><summary>Show the syntax for old versions of astra-cli (click here)</summary>
-
-Note: you should not need this.
-
-```bash
-astra db dsbulk workshops load \
-  -url data/movies_by_genre.csv \
-  -k netflix \
-  -t movies_by_genre
-```
-
-</details>
-
 > *Note*: we mock the trailers for these thousands of movies by using a handful
 > of them over and over. Don't be surprised if you'll see the wrong trailers
 > for your favorite movie!
 
 That's it! All 6000+ movies are now loaded and ready to go!
 
-## 4. Serverless Functions
+# Part 3 - Connecting your Application
+
+## 1. Serverless Functions
 
 > _Note_: this section and the next one ("Fetching from the Front-End")
 > are not steps to "perform", rather suggestions to dive in the app
@@ -846,7 +833,7 @@ query {
 
 </details>
 
-## 5. Fetching from the Front-End
+## 2. Fetching from the Front-End
 
 <details><summary>Show me this section</summary>
 
@@ -912,7 +899,7 @@ Now that you know how the front-end works, launch the app!
 
 </details>
 
-## 6. Install the Netlify CLI
+## 3. Install the Netlify CLI
 
 In the `workshop-graphql-netflix` directory, run the following:
 
@@ -929,7 +916,7 @@ npm install -g netlify-cli
 With the Netlify command-line interface you will build and deploy
 the application directly from the Gitpod terminal.
 
-## 7. Provide DB connection parameters
+## 4. Provide DB connection parameters
 
 The "serverless functions" part of your app, in order to speak to
 your DB through GraphQL, needs two important pieces of information:
@@ -957,15 +944,15 @@ in the second playground tab ([Part 1, step 4a](#4-insert-genre-data-with-graphq
 
 </details>
 
-## 8. Run the app in dev mode
+## 5. Run the app in dev mode
 
-✅ **Step 8a: Install dependencies:**
+✅ **Step 5a: Install dependencies:**
 
 ```bash
 npm install
 ```
 
-✅ **Step 8b: Start the app:** With the command
+✅ **Step 5b: Start the app:** With the command
 
 ```
 netlify dev
@@ -986,11 +973,11 @@ You can copy the URL found in Gitpod's simple browser and open in a new tab
 (of your real browser, that is) for a
 better experience. But now it's time to move to the actual deploy phase.
 
-## 9. Connect to your Netlify site
+## 6. Connect to your Netlify site
 
-✅ **Step 9a:** Stop the dev run with `Ctrl-C`.
+✅ **Step 6a:** Stop the dev run with `Ctrl-C`.
 
-✅ **Step 9b:** Authenticate with Netlify: run
+✅ **Step 6b:** Authenticate with Netlify: run
 
 ```
 netlify login
@@ -1012,7 +999,7 @@ Once you complete the login, you will see a console output like this:
 
 ![Netlify login](images/netlify-login-2.png)
 
-✅ **Step 9c:** Associate to your Netlify site: run
+✅ **Step 6c:** Associate to your Netlify site: run
 
 ```
 netlify link
@@ -1027,9 +1014,9 @@ and make sure you confirm the choice of associating to
 
 </details>
 
-## 10. Deploy in production!
+## 7. Deploy in production!
 
-✅ **Step 10a:** Inject secrets to the Netlify site
+✅ **Step 7a:** Inject secrets to the Netlify site
 
 ```
 netlify env:import .env
@@ -1047,7 +1034,7 @@ _Note: If you generated the `.env` with
 
 </details>
 
-✅ **Step 10b:** Build the app
+✅ **Step 7b:** Build the app
 
 Run
 
@@ -1061,7 +1048,7 @@ netlify build
 
 </details>
 
-✅ **Step 10c:** Deploy!
+✅ **Step 7c:** Deploy!
 
 ```
 netlify deploy --prod
@@ -1073,7 +1060,7 @@ netlify deploy --prod
 
 </details>
 
-✅ **Step 10d:** Visit your site.
+✅ **Step 7d:** Visit your site.
 
 ```
 netlify open:site

@@ -7,8 +7,8 @@ tasks:
       npm install -g npm@latest
     command: |
       cd /workspace/workshop-graphql-netflix
-      echo "workshopgraphql-netflix gitpod ready - LET'S DO THIS!"
-      npm install
+      git remote -v | grep datastaxdevs && echo "DO NOT USE THE DATASTAXDEVS WORKSPACE, PLEASE GO BACK TO THE INSTRUCTIONS TO SET UP YOUR OWN"
+      git remote -v | grep -v datastaxdevs && echo "workshopgraphql-netflix gitpod ready - LET'S DO THIS!" && npm install
 ports:
   - port: 8888
     onOpen: open-preview
