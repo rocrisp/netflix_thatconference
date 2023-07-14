@@ -12,7 +12,6 @@ tasks:
       nvm install node
       npm install -g npm@latest
       npm install -g netlify-cli
-      npm install
     command: |
       git remote -v | grep datastaxdevs && echo "DO NOT USE THE DATASTAXDEVS WORKSPACE, PLEASE GO BACK TO THE INSTRUCTIONS TO SET UP YOUR OWN"
       git remote -v | grep -v datastaxdevs && echo "workshopgraphql-netflix gitpod ready - LET'S DO THIS!" && npm install
