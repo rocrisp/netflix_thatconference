@@ -65,7 +65,7 @@ Yes, but attending the session is not enough. You need to complete the homeworks
 
 It doesn't matter if you join our workshop live or you prefer to do at your own pace, we have you covered. In this repository, you'll find everything you need for this workshop:
 
-- [Slide deck](slides/slides.pdf)
+- [Slide deck](https://docs.google.com/presentation/d/1rCQ_u3vsiyExY7Hmz-tz8lHN7ILo_VUJ74uT9IymGlQ/edit?usp=sharing)
 - [Discord chat](https://dtsx.io/discord)
 - ["cassandra" on StackOverflow](https://stackoverflow.com/questions/tagged/cassandra)
 - ["cassandra" on DBA StackExchange](https://dba.stackexchange.com/questions/tagged/cassandra)
