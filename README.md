@@ -82,21 +82,20 @@ It doesn't matter if you join our workshop live or you prefer to do at your own 
 
 ### Part 2 - DB Setup & Data Ingest
 1. [Create table for genres with GraphQL](#1-create-table-for-genres-with-graphql)
-2. [Insert genre data with GraphQL](#4-insert-genre-data-with-graphql)
-3. [Retrieve genres with GraphQL](#5-retrieve-genres-with-graphql)
-4. [Create a table for movies](#6-create-a-table-for-movies)
-5. [Insert a few movies](#7-insert-a-few-movies)
-6. [Retrieve movies: Pagination](#8-retrieve-movies-pagination)
+2. [Insert genre data with GraphQL](#2-insert-genre-data-with-graphql)
+3. [Retrieve genres with GraphQL](#3-retrieve-genres-with-graphql)
+4. [Create a table for movies](#4-create-a-table-for-movies)
+5. [Insert a few movies](#5-insert-a-few-movies)
+6. [Retrieve movies: Pagination](#6-retrieve-movies-pagination)
 
 ### Part 3 - Connecting your Application
 
-1. [Serverless Functions](#4-serverless-functions)
-2. [Fetching from the Front-End](#5-fetching-from-the-front-end)
-3. [Install the Netlify CLI](#6-install-the-netlify-cli)
-4. [Provide DB connection parameters](#7-provide-db-connection-parameters)
-5. [Run the app in dev mode](#8-run-the-app-in-dev-mode)
-6. [Connect to your Netlify site](#9-connect-to-your-netlify-site)
-7. [Deploy in production!](#10-deploy-in-production)
+1. [Serverless Functions](#1-serverless-functions)
+2. [Fetching from the Front-End](#2-fetching-from-the-front-end)
+3. [Provide DB connection parameters](#3-provide-db-connection-parameters)
+4. [Run the app in dev mode](#4-run-the-app-in-dev-mode)
+5. [Connect to your Netlify site](#5-connect-to-your-netlify-site)
+6. [Deploy in production!](#6-deploy-in-production)
 
 [**🎓 Complete the assignment, receive your Badge!**](#homework)
 
