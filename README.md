@@ -457,6 +457,7 @@ mutation insertGenres {
 
 then click on the big "play button" arrow in the center to execute the mutation
 
+
 ## 3. Retrieve genres with GraphQL
 
 ✅  **Step 3a:** In GraphQL Playground, not changing playground tab (stay on the second: "graphql", yeah) run the following query to read the `value` column of all table rows:
