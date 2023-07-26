@@ -272,7 +272,7 @@ Show me!
 ✅ **Step 4b: Create the workshops database:**
 
 ``` bash
-astra db create workshops -k netflix --if-not-exists
+astra db create -k netflix workshops --if-not-exists
 ```
 
 It may take a few minutes for this to complete, once it does you can continue.
@@ -702,7 +702,7 @@ This command installs and properly launches the `DSBulk` tool ([docs](https://do
 
 ``` bash
 astra db load workshops \
-  -url data/movies_by_genre.csv \
+  -url data/movies.csv \
   -k netflix \
   -t movies_by_genre
 ```
