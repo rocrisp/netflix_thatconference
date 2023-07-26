@@ -1073,7 +1073,7 @@ to get your badge of completion!
 3. Take a screenshot of your Netflix clone running either from your Gitpod or (better) deployed to production in Netlify (in this case, you could also give us the Netlify URL).
 4. The screenshot should clearly show the movie/genre you added (make sure you tell us its name when submitting).
 5. (Optional for extra wisdom) Watch the 2-hour video by Ania [HERE](#video-tutorial-with-ania-kubow), build the app yourself, and show us the running final result.
-6. Submit your homework [here](https://dtsx.io/homework-graphql-netflix).
+6. Submit your homework [here]([https://dtsx.io/homework-graphql-netflix)](https://forms.gle/E4S2vu7HYzG2ATqu8).  If the form does not work for you, email your homework to [Kirsten](mailto:kirsten.hunter@datastax.com)
 
 That's it, you are done: expect an email in the next days!
 
